@@ -1,0 +1,37 @@
+{
+  "name": "anirealm",
+  "version": "1.0.0",
+  "description": "web application AniRealm",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build --emptyOutDir",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js,.mjs,.cjs",
+    "format": "prettier --ignore-path ./.gitignore --write \"./**/*.{html,json,js,ts,css}\"",
+    "test": "jest"
+  },
+  "author": "Ibraim Gonzalez",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-import": "^2.31.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.5.3",
+    "vite": "^6.3.5"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "browserslist": [
+    "last 3 and_chr versions",
+    "last 3 chrome versions",
+    "last 3 opera versions",
+    "last 3 ios_saf versions",
+    "last 3 safari versions"
+  ]
+}
