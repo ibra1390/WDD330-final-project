@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AniRealm | Discover Your Next Anime</title>
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/large.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Lato&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header id="main-header" class="site-header"></header>
+
+    <main class="container">
+      <section class="search-section">
+        <h1 class="main-title">Find Your Next Favorite Anime</h1>
+        <form id="search-form" class="search-form">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search anime by title..."
+            aria-label="Search anime"
+            required
+          />
+          <button type="submit">Search</button>
+        </form>
+        <div id="search-results" class="anime-grid"></div>
+      </section>
+    </main>
+
+    <footer id="main-footer" class="site-footer"></footer>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

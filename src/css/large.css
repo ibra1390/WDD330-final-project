@@ -1,0 +1,5 @@
+@media screen and (min-width: 768px) {
+  .search-form {
+    gap: 1.5rem;
+  }
+}
