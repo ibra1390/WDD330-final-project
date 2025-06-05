@@ -1,4 +1,9 @@
 import { loadHeaderFooter } from "./utils.js";
-import "./search.js";
+import { initSearch } from "./search.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  initSearch();
+});
 
 loadHeaderFooter();
+
