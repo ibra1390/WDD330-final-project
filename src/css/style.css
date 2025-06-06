@@ -262,7 +262,6 @@ body {
     height: 56px;
   }
 
-  /* ✅ Fix para el formulario de búsqueda */
   .search-form {
     flex-direction: column;
   }
@@ -273,6 +272,6 @@ body {
   }
 
   .search-section {
-    padding: 1rem; /* Opcional: menos padding en móviles */
+    padding: 1rem; 
   }
 }
