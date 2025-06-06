@@ -261,4 +261,18 @@ body {
   .fav-icon {
     height: 56px;
   }
+
+  /* ✅ Fix para el formulario de búsqueda */
+  .search-form {
+    flex-direction: column;
+  }
+
+  .search-form input[type="text"],
+  .search-form button {
+    width: 100%;
+  }
+
+  .search-section {
+    padding: 1rem; /* Opcional: menos padding en móviles */
+  }
 }
