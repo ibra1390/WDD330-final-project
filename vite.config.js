@@ -8,7 +8,7 @@ const __dirname = dirname(__filename);
 export default defineConfig({
   root: "src",
   publicDir: "public",
-  base: './',
+  base: "./",
   build: {
     outDir: "../dist",
     rollupOptions: {
