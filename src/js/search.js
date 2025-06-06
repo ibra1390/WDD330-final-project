@@ -23,14 +23,14 @@ function initSearch() {
 
 function displayResults(animeList, container) {
   container.innerHTML = animeList
-    .map((anime) => {
-      return `
+    .map(
+      (anime) => `
         <div class="anime-card">
           <img src="${anime.images.jpg.image_url}" alt="${anime.title}" />
           <h3>${anime.title}</h3>
         </div>
-      `;
-    })
+      `
+    )
     .join("");
 }
 
