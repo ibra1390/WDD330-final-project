@@ -28,4 +28,11 @@ export default class AnimeService {
     const data = await convertToJson(res);
     return data.data;
   }
+
+
+  static async getAnimeById(id) {
+    const res = await fetch(`${jikanBaseUrl}/anime/${id}`);
+    const data = await convertToJson(res);
+    return data.data;
+  }
 }

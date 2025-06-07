@@ -26,8 +26,10 @@ function displayResults(animeList, container) {
     .map(
       (anime) => `
         <div class="anime-card">
-          <img src="${anime.images.jpg.image_url}" alt="${anime.title}" />
-          <h3>${anime.title}</h3>
+          <a href="/details/index.html?id=${anime.mal_id}" class="anime-card-link">
+            <img src="${anime.images.jpg.image_url}" alt="${anime.title}" />
+            <h3>${anime.title}</h3>
+          </a>
         </div>
       `
     )
