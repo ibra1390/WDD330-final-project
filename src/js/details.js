@@ -1,5 +1,6 @@
 import AnimeService from "./ExternalServices.mjs";
 import { loadHeaderFooter } from "./utils.js";
+import { saveFavorite, removeFavorite, isFavorite } from "./storage.js";
 
 loadHeaderFooter();
 
@@ -20,7 +21,6 @@ function renderAnimeDetails(anime) {
 
   // Extract genre names and join them into a comma-separated string
   const genres = anime.genres.map((genre) => genre.name).join(", ");
-
   // Get the airing year from the 'aired' object, fallback to 'Unknown' if missing
   const year = anime.aired?.prop?.from?.year || "Unknown";
 
@@ -35,9 +35,39 @@ function renderAnimeDetails(anime) {
         <p><strong>Genres:</strong> ${genres}</p> <!-- Genre names from array -->
         <p><strong>Year:</strong> ${year}</p> <!-- Aired year (start year) -->
         <p><strong>Synopsis:</strong> ${cleanSynopsis(anime.synopsis)}</p>
+        <button id="add-favorite-btn" class="favorite-btn">Add to Favorites</button>
       </div>
     </div>
   `;
+
+   // Add button functionality 
+  const favoriteBtn = document.getElementById("add-favorite-btn");
+  const animeData = {
+    id: anime.mal_id,
+    title: anime.title,
+    image: anime.images.jpg.image_url,
+  };
+
+  function updateButton() {
+    if (isFavorite(animeData.id)) {
+      favoriteBtn.textContent = "✓ Remove from Favorites";
+      favoriteBtn.classList.add("favorited");
+    } else {
+      favoriteBtn.textContent = "☆ Add to Favorites";
+      favoriteBtn.classList.remove("favorited");
+    }
+  }
+
+  favoriteBtn.addEventListener("click", () => {
+    if (isFavorite(animeData.id)) {
+      removeFavorite(animeData.id);
+    } else {
+      saveFavorite(animeData);
+    }
+    updateButton(); // Display the correct button state
+  });
+
+  updateButton();
 }
 
 async function loadAnimeDetail() {
