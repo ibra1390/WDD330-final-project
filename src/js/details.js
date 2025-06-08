@@ -8,8 +8,21 @@ function getAnimeIdFromUrl() {
   return params.get("id");
 }
 
+// Cleaning "Written by MAL Rewrite" at the end of some sypnosis
+function cleanSynopsis(text) {
+  if (!text) return "No synopsis available.";
+  const cleaned = text.replace(/\s*\[Written by MAL Rewrite\]\s*$/, "").trim();
+  return cleaned.length > 0 ? cleaned : "No synopsis available.";
+}
+
 function renderAnimeDetails(anime) {
   const container = document.getElementById("anime-detail");
+
+  // Extract genre names and join them into a comma-separated string
+  const genres = anime.genres.map((genre) => genre.name).join(", ");
+
+  // Get the airing year from the 'aired' object, fallback to 'Unknown' if missing
+  const year = anime.aired?.prop?.from?.year || "Unknown";
 
   container.innerHTML = `
     <div class="anime-detail-card">
@@ -19,7 +32,9 @@ function renderAnimeDetails(anime) {
         <p><strong>Episodes:</strong> ${anime.episodes || "N/A"}</p>
         <p><strong>Status:</strong> ${anime.status}</p>
         <p><strong>Score:</strong> ${anime.score || "N/A"}</p>
-        <p><strong>Synopsis:</strong> ${anime.synopsis || "No synopsis available."}</p>
+        <p><strong>Genres:</strong> ${genres}</p> <!-- Genre names from array -->
+        <p><strong>Year:</strong> ${year}</p> <!-- Aired year (start year) -->
+        <p><strong>Synopsis:</strong> ${cleanSynopsis(anime.synopsis)}</p>
       </div>
     </div>
   `;

@@ -11,6 +11,7 @@ export async function loadTemplate(path) {
   return template;
 }
 
+//Display footer and header
 export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate("/partials/header.html");
   const footerTemplate = await loadTemplate("/partials/footer.html");
@@ -20,4 +21,20 @@ export async function loadHeaderFooter() {
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
+}
+
+// Display Anime Cards
+export function displayResults(animeList, container) {
+  container.innerHTML = animeList
+    .map(
+      (anime) => `
+        <div class="anime-card">
+          <a href="/details/index.html?id=${anime.mal_id}" class="anime-card-link">
+            <img src="${anime.images.jpg.image_url}" alt="${anime.title}" class="anime-card-img" />
+            <h3 class="anime-card-title">${anime.title}</h3>
+          </a>
+        </div>
+      `
+    )
+    .join("");
 }

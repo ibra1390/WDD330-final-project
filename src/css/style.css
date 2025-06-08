@@ -267,8 +267,8 @@ body {
   .search-form input[type="text"],
   .search-form button {
     width: 100%;
-    padding: 0.6rem 1rem; 
-  font-size: var(--font-base);
+    padding: 0.6rem 1rem;
+    font-size: var(--font-base);
   }
 
   .search-section {

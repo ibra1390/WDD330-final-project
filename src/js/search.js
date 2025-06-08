@@ -1,4 +1,5 @@
 import AnimeService from "./ExternalServices.mjs";
+import { displayResults } from "./utils.js";
 
 function initSearch() {
   const searchForm = document.getElementById("search-form");
@@ -19,21 +20,6 @@ function initSearch() {
       }
     });
   }
-}
-
-function displayResults(animeList, container) {
-  container.innerHTML = animeList
-    .map(
-      (anime) => `
-        <div class="anime-card">
-          <a href="/details/index.html?id=${anime.mal_id}" class="anime-card-link">
-            <img src="${anime.images.jpg.image_url}" alt="${anime.title}" />
-            <h3>${anime.title}</h3>
-          </a>
-        </div>
-      `
-    )
-    .join("");
 }
 
 export { initSearch };

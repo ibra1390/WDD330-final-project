@@ -1,4 +1,5 @@
 import AnimeService from "./ExternalServices.mjs";
+import { displayResults } from "./utils.js";
 
 // Initialize the genre filter dropdown
 function initGenreFilter() {
@@ -33,20 +34,6 @@ function initGenreFilter() {
       resultsContainer.innerHTML = `<p class="error">Error: ${err.message}</p>`;
     }
   });
-}
-
-// Reuse same display function as in search.js
-function displayResults(animeList, container) {
-  container.innerHTML = animeList
-    .map(
-      (anime) => `
-        <div class="anime-card">
-          <img src="${anime.images.jpg.image_url}" alt="${anime.title}" />
-          <h3>${anime.title}</h3>
-        </div>
-      `
-    )
-    .join("");
 }
 
 export { initGenreFilter };
