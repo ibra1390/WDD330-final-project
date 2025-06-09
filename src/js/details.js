@@ -1,6 +1,7 @@
 import AnimeService from "./ExternalServices.mjs";
 import { loadHeaderFooter } from "./utils.js";
 import { saveFavorite, removeFavorite, isFavorite } from "./storage.js";
+import { loadSimilarAnimes } from "./similarAnimes.js";
 
 loadHeaderFooter();
 
@@ -77,6 +78,7 @@ async function loadAnimeDetail() {
   try {
     const anime = await AnimeService.getAnimeById(animeId);
     renderAnimeDetails(anime);
+    await loadSimilarAnimes(anime);
   } catch (err) {
     console.error("Failed to fetch anime details:", err);
   }

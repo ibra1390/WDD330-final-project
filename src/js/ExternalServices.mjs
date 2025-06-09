@@ -1,6 +1,5 @@
 const jikanBaseUrl = import.meta.env.VITE_JIKAN_BASE_URL;
 
-
 async function convertToJson(res) {
   const json = await res.json();
   if (res.ok) {
@@ -35,4 +34,5 @@ export default class AnimeService {
     const data = await convertToJson(res);
     return data.data;
   }
+
 }
