@@ -281,7 +281,8 @@ body {
 
 /* Add and remove buttons */
 .favorite-btn,
-.details-btn {
+.details-btn, 
+.remove-btn {
   padding: 6px 12px;
   font-size: 0.85rem;
   border-radius: 4px;
@@ -296,7 +297,7 @@ body {
   background-color: var(--secondary-color);
 }
 
-.favorite-btn:hover {
+.favorite-btn:hover, .remove-btn:hover {
   background-color: #c5284d;
 }
 

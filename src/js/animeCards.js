@@ -2,12 +2,10 @@ import { saveFavorite, removeFavorite, isFavorite } from "./storage.js";
 
 // Simple card: image + title
 export function animeCardTemplate(anime) {
-  const poster =
-    anime.images?.jpg?.image_url ||
-    "https://via.placeholder.com/225x320?text=No+Image";
+  const poster = anime?.images?.jpg?.image_url || anime?.image || "https://via.placeholder.com/225x320?text=No+Image";
 
   return `
-    <div class="anime-card" data-id="${anime.mal_id}">
+    <div class="anime-card" data-id="${anime.id || anime.mal_id}">
       <img src="${poster}" alt="${anime.title}" />
       <h3>${anime.title}</h3>
     </div>
@@ -16,26 +14,25 @@ export function animeCardTemplate(anime) {
 
 // Expanded card: shows buttons
 export function expandedAnimeCardTemplate(anime, isFavView = false) {
-  const poster =
-    anime.images?.jpg?.image_url ||
-    "https://via.placeholder.com/225x320?text=No+Image";
+  const imageUrl = anime?.images?.jpg?.image_url || anime?.image || "https://via.placeholder.com/225x320?text=No+Image";
+  const id = anime.id || anime.mal_id;
 
-  // En la vista de favoritos el botón será "Remove", sino "Add" o "Remove" según estado
-  const removeBtn = isFavView
-    ? `<button class="remove-btn" data-id="${anime.id || anime.mal_id}">✖ Remove</button>`
-    : `<button class="favorite-btn">${isFavorite(anime.mal_id) ? "✖ Remove" : "🤍 Add"}</button>`;
+  const buttons = isFavView
+    ? `<button class="remove-btn" data-id="${id}">✖ Remove</button>`
+    : `<button class="favorite-btn">${isFavorite(id) ? "✖ Remove" : "🤍 Add"}</button>`;
 
   return `
-    <div class="anime-card expanded${isFavView ? " favorite" : ""}" data-id="${anime.id || anime.mal_id}">
-      <img src="${poster}" alt="${anime.title}" />
+    <div class="anime-card expanded${isFavView ? " favorite" : ""}" data-id="${id}">
+      <img src="${imageUrl}" alt="${anime.title}">
       <div class="anime-details">
         <h3>${anime.title}</h3>
-        ${removeBtn}
+        ${buttons}
         <button class="details-btn">View Details</button>
       </div>
     </div>
   `;
 }
+
 // Render cards inside container
 export function renderAnimeCards(container, animeList, sectionTitle = "") {
   if (!animeList?.length) {
@@ -56,7 +53,7 @@ export function renderAnimeCards(container, animeList, sectionTitle = "") {
 // Add click listeners to expand cards
 function addAnimeCardListeners(container, animeList) {
   const grid = container.querySelector(".anime-grid");
-  grid.replaceWith(grid.cloneNode(true)); // Reset events
+  grid.replaceWith(grid.cloneNode(true));
   const newGrid = container.querySelector(".anime-grid");
 
   newGrid.addEventListener("click", (e) => {
@@ -64,7 +61,7 @@ function addAnimeCardListeners(container, animeList) {
     if (!card) return;
 
     const animeId = Number(card.dataset.id);
-    const anime = animeList.find((a) => a.mal_id === animeId);
+    const anime = animeList.find((a) => (a.mal_id || a.id) === animeId);
     const expanded = container.querySelector(".anime-card.expanded");
 
     // Collapse if already expanded
@@ -77,7 +74,7 @@ function addAnimeCardListeners(container, animeList) {
     // Collapse previous expanded
     if (expanded) {
       const prevId = Number(expanded.dataset.id);
-      const prevAnime = animeList.find((a) => a.mal_id === prevId);
+      const prevAnime = animeList.find((a) => (a.mal_id || a.id) === prevId);
       expanded.outerHTML = animeCardTemplate(prevAnime);
     }
 
@@ -88,41 +85,42 @@ function addAnimeCardListeners(container, animeList) {
 }
 
 // Setup favorite button
-export function setupFavoriteButton(card, anime) {
-  const favBtn = card.querySelector(".favorite-btn");
+export function setupFavoriteButton(containerOrCard, anime, addText = "🤍 Add", removeText = "✖ Remove") {
+  const favBtn = containerOrCard.querySelector(".favorite-btn");
   if (!favBtn) return;
+
+  // Set initial button text based on favorite status
+  const id = anime.id || anime.mal_id;
+  favBtn.textContent = isFavorite(id) ? removeText : addText;
 
   favBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    const isFav = isFavorite(anime.mal_id);
 
-    if (isFav) {
-      removeFavorite(anime.mal_id);
+    if (isFavorite(id)) {
+      removeFavorite(id);
       alert(`Removed "${anime.title}" from favorites.`);
     } else {
       saveFavorite({
-        id: anime.mal_id,
+        id: id,
         title: anime.title,
-        images: anime.images,
-        synopsis: anime.synopsis,
+        image: anime?.images?.jpg?.image_url || anime.image || "",
       });
       alert(`"${anime.title}" added to favorites!`);
     }
 
-    // Update text button
-    favBtn.textContent = isFavorite(anime.mal_id) ? "✖ Remove" : "🤍 Add";
+    // Update button text after change
+    favBtn.textContent = isFavorite(id) ? removeText : addText;
   });
 }
 
 // Handle buttons in expanded card
 function setupExpandedCard(anime) {
-  const card = document.querySelector(`.anime-card[data-id="${anime.mal_id}"]`);
-  const detailsBtn = card.querySelector(".details-btn");
-
+  const card = document.querySelector(`.anime-card[data-id="${anime.id || anime.mal_id}"]`);
   setupFavoriteButton(card, anime);
 
-  detailsBtn.addEventListener("click", () => {
-    window.location.href = `../details/index.html?id=${anime.mal_id}`;
+  const detailsBtn = card.querySelector(".details-btn");
+  detailsBtn?.addEventListener("click", () => {
+    window.location.href = `../details/index.html?id=${anime.id || anime.mal_id}`;
   });
 }
 
