@@ -1,14 +1,12 @@
 import AnimeService from "./ExternalServices.mjs";
 import { renderAnimeCards } from "./animeCards.js";
 
-function renderSimilarSection(title, animeList, containerId) {
+function renderSimilarSection(animeList, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
   // Use your existing displayResults function to render the cards
   renderAnimeCards(container, animeList);
-
-  // Since your cards have links (<a>), no need to add extra click handlers here
 }
 
 export async function loadSimilarAnimes(anime) {
@@ -43,7 +41,7 @@ export async function loadSimilarAnimes(anime) {
     // Get a random subset, excluding the original anime
     const selected = uniqueResults.sort(() => 0.5 - Math.random()).slice(0, 6);
 
-    renderSimilarSection("Similar Animes", selected, "similar-animes");
+    renderSimilarSection(selected, "similar-animes");
   } catch (err) {
     console.error("Failed to load similar animes:", err);
   }
