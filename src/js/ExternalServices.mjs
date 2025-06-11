@@ -1,4 +1,5 @@
 const jikanBaseUrl = import.meta.env.VITE_JIKAN_BASE_URL;
+const youtubeApiKey = import.meta.env.VITE_YOUTUBE_API_KEY;
 
 async function convertToJson(res) {
   const json = await res.json();
@@ -35,4 +36,16 @@ export default class AnimeService {
     return data.data;
   }
 
+
+  static async fetchYouTubeTrailer(query) {
+  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(
+    query + " official trailer"
+  )}&key=${youtubeApiKey}&maxResults=1&type=video`;
+
+  const res = await fetch(url);
+  const data = await convertToJson(res);
+  return data.items?.[0] || null;
+  }
+
 }
+
