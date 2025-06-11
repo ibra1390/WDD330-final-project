@@ -1,5 +1,5 @@
 import AnimeService from "./ExternalServices.mjs";
-import { displayResults } from "./utils.js";
+import { renderAnimeCards } from "./animeCards.js";
 
 function initSearch() {
   const searchForm = document.getElementById("search-form");
@@ -14,7 +14,7 @@ function initSearch() {
 
       try {
         const animeList = await AnimeService.searchAnimeByTitle(query);
-        displayResults(animeList, resultsContainer);
+        renderAnimeCards(resultsContainer, animeList, `Results for "${query}"`);
       } catch (err) {
         resultsContainer.innerHTML = `<p class="error">Error: ${err.message}</p>`;
       }

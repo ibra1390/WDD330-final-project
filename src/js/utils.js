@@ -23,18 +23,12 @@ export async function loadHeaderFooter() {
   renderWithTemplate(footerTemplate, footerElement);
 }
 
-// Display Anime Cards
-export function displayResults(animeList, container) {
-  container.innerHTML = animeList
-    .map(
-      (anime) => `
-        <div class="anime-card">
-          <a href="/details/index.html?id=${anime.mal_id}" class="anime-card-link">
-            <img src="${anime.images.jpg.image_url}" alt="${anime.title}" class="anime-card-img" />
-            <h3 class="anime-card-title">${anime.title}</h3>
-          </a>
-        </div>
-      `
-    )
-    .join("");
+// Get data from localStorage by key (returns array or empty array)
+export function getLocalStorage(key) {
+  return JSON.parse(localStorage.getItem(key)) || [];
+}
+
+// Save data to localStorage by key
+export function postLocalStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
 }

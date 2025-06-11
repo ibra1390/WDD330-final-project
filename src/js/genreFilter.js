@@ -1,5 +1,5 @@
 import AnimeService from "./ExternalServices.mjs";
-import { displayResults } from "./utils.js";
+import { renderAnimeCards } from "./animeCards.js";
 
 // Initialize the genre filter dropdown
 function initGenreFilter() {
@@ -25,11 +25,17 @@ function initGenreFilter() {
   // Handle genre selection
   genreSelect.addEventListener("change", async () => {
     const genreId = genreSelect.value;
+    const genreName = genreSelect.options[genreSelect.selectedIndex].text;
+
     if (!genreId) return;
 
     try {
       const animeList = await AnimeService.searchAnimeByGenre(genreId);
-      displayResults(animeList, resultsContainer);
+      renderAnimeCards(
+        resultsContainer,
+        animeList,
+        `Results for "${genreName}"`
+      );
     } catch (err) {
       resultsContainer.innerHTML = `<p class="error">Error: ${err.message}</p>`;
     }
