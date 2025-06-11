@@ -5,6 +5,12 @@ function renderSimilarSection(animeList, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
+  // Insert "Related Titles" heading
+  const title = document.createElement("h2");
+  title.className = "section-title";
+  title.textContent = "Related Titles";
+  container.parentElement.insertBefore(title, container);
+
   // Use your existing displayResults function to render the cards
   renderAnimeCards(container, animeList);
 }

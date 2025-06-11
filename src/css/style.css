@@ -351,7 +351,7 @@ body {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 900px;
-  margin-bottom: 3rem;
+  margin-bottom: 0.5rem;
 }
 
 .anime-detail-section img {
