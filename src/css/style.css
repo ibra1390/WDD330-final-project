@@ -473,7 +473,7 @@ body {
 
 
 /* Responsive adjustments for small screens */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   
   .anime-grid,
   .similar-animes-container {
@@ -501,11 +501,18 @@ body {
     flex-direction: column;
   }
 
-  .search-form input[type="text"],
-  .search-form button {
+  .search-form input[type="text"] {
     width: 100%;
     padding: 0.6rem 1rem;
     font-size: var(--font-base);
+  }
+
+  .search-form button {
+    width: auto; 
+    padding: 0.6rem 1.2rem;
+    font-size: var(--font-base);
+    margin-top: 0.5rem; 
+    align-self: flex-end; 
   }
 
   .search-section {
