@@ -508,9 +508,10 @@ body {
   }
 
   .search-form button {
-    width: 200px; 
-    padding: 0.6rem 1.2rem;
+    width: 180px; 
+    padding: 0.6rem 1rem;
     font-size: var(--font-base);
+    margin: 0 auto;
   }
 
   .search-section {
