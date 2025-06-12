@@ -508,11 +508,9 @@ body {
   }
 
   .search-form button {
-    width: auto; 
+    width: 200px; 
     padding: 0.6rem 1.2rem;
     font-size: var(--font-base);
-    margin-top: 0.5rem; 
-    align-self: flex-end; 
   }
 
   .search-section {
