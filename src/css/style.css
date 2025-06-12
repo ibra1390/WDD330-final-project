@@ -52,7 +52,8 @@ body {
 }
 
 .logo {
-  height: 72px;
+  height: 90px;
+  max-height: 90px;
 }
 
 .main-nav ul {
@@ -74,7 +75,8 @@ body {
 }
 
 .fav-icon {
-  height: 72px;
+  height: 90px;
+  width: auto;
   transition: transform 0.2s ease;
 }
 
@@ -492,7 +494,7 @@ body {
 
   .logo,
   .fav-icon {
-    height: 56px;
+    height: 70px;
   }
 
   .search-form {
