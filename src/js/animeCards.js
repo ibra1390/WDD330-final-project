@@ -96,6 +96,14 @@ export function setupFavoriteButton(containerOrCard, anime, addText = "🤍 Add"
   favBtn.addEventListener("click", (e) => {
     e.stopPropagation();
 
+    // Trigger shake animation on favorite icon when an Anime is added or removed
+    const favIcon = document.querySelector(".fav-icon");
+    if (favIcon) {
+      favIcon.classList.remove("shake-animation");
+      void favIcon.offsetWidth; 
+      favIcon.classList.add("shake-animation");
+    }
+
     if (isFavorite(id)) {
       removeFavorite(id);
       alert(`Removed "${anime.title}" from favorites.`);

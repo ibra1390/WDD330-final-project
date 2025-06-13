@@ -63,7 +63,6 @@ body {
   transform: scale(1.1);
 }
 
-
 .main-nav ul {
   list-style: none;
   display: flex;
@@ -80,6 +79,25 @@ body {
 
 .main-nav a:hover {
   color: var(--accent-pink);
+}
+
+/* Shake animation fav-icon */
+.shake-animation {
+  animation: shake 0.5s linear;
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(10deg); }
+  20% { transform: rotate(-10deg); }
+  30% { transform: rotate(10deg); }
+  40% { transform: rotate(-10deg); }
+  50% { transform: rotate(8deg); }
+  60% { transform: rotate(-8deg); }
+  70% { transform: rotate(4deg); }
+  80% { transform: rotate(-4deg); }
+  90% { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
 }
 
 
