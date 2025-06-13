@@ -489,7 +489,37 @@ body {
   margin: 1rem 0;
 }
 
+/* Favorites section */
+.hidden {
+  display: none;
+}
 
+.empty-favorites {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  padding: 1rem;
+}
+
+.empty-fav-img {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  animation: fadeZoom 1.5s ease-out forwards;
+  opacity: 0.95;
+}
+
+@keyframes fadeZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 /* Responsive adjustments for small screens */
 @media (max-width: 768px) {
   

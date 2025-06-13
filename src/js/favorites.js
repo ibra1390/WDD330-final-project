@@ -8,13 +8,27 @@ loadHeaderFooter();
 function renderFavorites() {
   const container = document.getElementById("favorites-list");
   const favorites = getFavorites();
-
+  const title = document.getElementById("favorites-title");
   
-  // Show a message if there are not favorites
+  // Show an image if there are not favorites
   if (!favorites.length) {
-    container.innerHTML = "<p>No favorites added yet.</p>";
+    title.classList.add("hidden");
+    container.innerHTML = `
+      <div class="empty-favorites">
+        <img src="../images/nofavorites.png" alt="No favorites yet" class="empty-fav-img" />
+      </div>
+    `;
     return;
   }
+
+  // Show title only if favorites exist
+  title.classList.remove("hidden");
+
+  container.innerHTML = `
+    <div class="anime-grid">
+      ${favorites.map((anime) => animeCardTemplate(anime)).join("")}
+    </div>
+  `;
 
   // Create the cards with buttons using the expanded template
   container.innerHTML = `
