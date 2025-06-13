@@ -53,9 +53,11 @@ export function renderAnimeCards(container, animeList, sectionTitle = "") {
 // Add click listeners to expand cards
 function addAnimeCardListeners(container, animeList) {
   const grid = container.querySelector(".anime-grid");
+  
   grid.replaceWith(grid.cloneNode(true));
   const newGrid = container.querySelector(".anime-grid");
 
+  //When a card is clicked
   newGrid.addEventListener("click", (e) => {
     const card = e.target.closest(".anime-card");
     if (!card) return;
@@ -71,16 +73,24 @@ function addAnimeCardListeners(container, animeList) {
       return;
     }
 
-    // Collapse previous expanded
+    // Collapse previous expanded card
     if (expanded) {
       const prevId = Number(expanded.dataset.id);
       const prevAnime = animeList.find((a) => (a.mal_id || a.id) === prevId);
       expanded.outerHTML = animeCardTemplate(prevAnime);
     }
 
-    // Expand current
+    // Expand current card
     card.outerHTML = expandedAnimeCardTemplate(anime);
-    setTimeout(() => setupExpandedCard(anime), 0);
+
+    //Add flip animation
+    setTimeout(() => {
+      const newCard = container.querySelector(`.anime-card[data-id="${animeId}"]`);
+      if (newCard) {
+        newCard.style.animation = "flipIn 0.6s ease";
+      }
+      setupExpandedCard(anime); // Setup buttons
+    }, 0);
   });
 }
 

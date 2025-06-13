@@ -68,6 +68,15 @@ const grid = container.querySelector(".anime-grid");
       removeBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         removeFavorite(id);
+
+        // Add shake animation to fav-icon
+        const favIcon = document.querySelector(".fav-icon");
+        if (favIcon) {
+          favIcon.classList.remove("shake-animation");
+          void favIcon.offsetWidth;
+          favIcon.classList.add("shake-animation");
+        }
+
         alert(`Removed "${anime.title}" from favorites.`);
         renderFavorites();
       });
