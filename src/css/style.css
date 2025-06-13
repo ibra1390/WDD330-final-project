@@ -411,7 +411,7 @@ body {
   max-width: 300px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .anime-detail-section h2 {
@@ -454,6 +454,9 @@ body {
   margin-top: 0.5rem; 
 }
 
+.anime-detail-info .favorite-btn {
+  margin-top: 0rem; 
+}
 
 /* Similar Animes Section */
 .similar-animes-section {
@@ -493,6 +496,7 @@ body {
   width: 100%;
   margin-left: auto;
   margin-right: auto; 
+  margin-top: 0.5rem;
 }
 
 /* Cinematic YouTube iframe */
