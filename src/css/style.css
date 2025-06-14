@@ -112,7 +112,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1rem;
+  padding: 130px 0.2rem 0.2rem;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
@@ -128,6 +128,27 @@ body {
   border-radius: 8px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
+}
+
+.search-hint {
+  text-align: center;
+  margin-top: 1rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.2s;
+}
+
+.search-hint img {
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.search-hint.hint-fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  pointer-events: none;
 }
 
 /* Main title styles */
@@ -303,17 +324,6 @@ body {
 }
 
 /* Flip animation */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes flipIn {
   0% {
     transform: perspective(600px) rotateY(90deg);

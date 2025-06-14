@@ -5,6 +5,7 @@ import { renderAnimeCards } from "./animeCards.js";
 function initGenreFilter() {
   const genreSelect = document.getElementById("genreSelect");
   const resultsContainer = document.getElementById("search-results");
+  const hint = document.getElementById("search-hint");
 
   if (!genreSelect || !resultsContainer) return;
 
@@ -28,6 +29,12 @@ function initGenreFilter() {
     const genreName = genreSelect.options[genreSelect.selectedIndex].text;
 
     if (!genreId) return;
+
+    //Hide hint-image 
+    if (hint && !hint.classList.contains("hidden")) {
+      hint.classList.add("hint-fade-out");
+      setTimeout(() => hint.classList.add("hidden"), 500);
+    }
 
     try {
       const animeList = await AnimeService.searchAnimeByGenre(genreId);
