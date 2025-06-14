@@ -145,10 +145,28 @@ body {
   margin: 0 auto;
 }
 
-.search-hint.hint-fade-out {
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
-  pointer-events: none;
+@keyframes fadeInUpHint {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeOutHint {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.search-hint.fade-in {
+  animation: fadeInUpHint 0.8s ease forwards;
+}
+
+.search-hint.fade-out {
+  animation: fadeOutHint 0.5s ease forwards;
 }
 
 /* Main title styles */

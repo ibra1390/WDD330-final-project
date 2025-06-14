@@ -30,10 +30,13 @@ function initGenreFilter() {
 
     if (!genreId) return;
 
-    //Hide hint-image 
-    if (hint && !hint.classList.contains("hidden")) {
-      hint.classList.add("hint-fade-out");
-      setTimeout(() => hint.classList.add("hidden"), 500);
+    //Executes fade-out if it's visible
+    if (hint.classList.contains("fade-in")) {
+      hint.classList.remove("fade-in");
+      hint.classList.add("fade-out");
+      hint.addEventListener("animationend", () => {
+       hint.style.display = "none";
+      }, { once: true });
     }
 
     try {
