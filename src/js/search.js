@@ -24,7 +24,16 @@ function initSearch() {
 
       try {
         const animeList = await AnimeService.searchAnimeByTitle(query);
-        renderAnimeCards(resultsContainer, animeList, `Results for "${query}"`);
+
+        if (animeList.length === 0) {
+          resultsContainer.innerHTML = `
+            <div class="no-results">
+              <img src="./images/error.png" alt="No anime found" class="no-results-img" />
+            </div>
+          `;
+        } else {
+          renderAnimeCards(resultsContainer, animeList, `Results for "${query}"`);
+        }
       } catch (err) {
         resultsContainer.innerHTML = `<p class="error">Error: ${err.message}</p>`;
       }

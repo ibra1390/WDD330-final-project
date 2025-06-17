@@ -169,6 +169,24 @@ body {
   animation: fadeOutHint 0.5s ease forwards;
 }
 
+/* No Anime found */
+.no-results {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.no-results-img {
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+
 /* Main title styles */
 .main-title {
   margin-bottom: 1.5rem;
